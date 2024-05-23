@@ -1,12 +1,19 @@
 # Proyecto
 
 # Objetivo 
-Este proyecto fue creado como un registro de los movimientos monetarios de una tienda. Estos movimientos pueden ser dados por distintos factores y la intención es llevar el registro de ellos para poder conocer la ganancia neta.
+El objetivo es estructurar un hotel. En este hotel se plantea la existencia de las clases:
+Hotel: encargado de gestionar las habitaciones, empleados y clientes
+Personas: clase madre de empleados y clientes
+Empleados: encargados de hacer los cobros
+Clientes: personas que harán las reservas de las habitaciones
+Habitaciones: Podrán ser reservadas, se puede hacer varias reservas al mismo cuarto con el objetivo de poder apartarlos a lo largo del tiempo (ej: una de 18 al 24 y la otora reserva del 28 al 31)
+Reserva: manejo de las reservaciones de las habitaciones
 
-En esta tienda hay dos tipos de personas: empleados y jefe. El empleado únicamente podrá realizar ventas, mientras el jefe adicional a esto podrá hacer compras de nuevos productos, dar de alta empleados, productos, hacer retiros, etc. En fondo se encontrará en dinero que va a ser afectado dependiendo de los movimientos, mientras que en gastos se registrarán estos movimientos con su razón. Artículos solo será una manera de hacer compras y ventas para la empresa y así obtener el ingreso regular.
+# Consideraciones
+Casos de error: Empalmamiento de las reservas, se debe checar disponibilidad antes de reservar porque el programa no es capaz de evitar empalmamientos.
 
-# IMPORTANTE
-Se adjunta link al proyecto anterior del cual se toma base para realizar este, sin embargo este NO es el proyecto final. El objetivo de esto es tener clara la estructura antes hecha y que llevará ajustes y mejoras. Estos archivos no están del todo adecuados a la UML y la intención no es copiar el trabajo, simplemente tomar la idea base.
+Ya que se planea usar polimorfismo en la mayor parte del proyecto, aún no se implementan la mayoría de los archivos. Hasta ahora solo cuenta con las clases de herencia.
 
 # Versiones
 Versión 1: Se agregó el UML para plantear la base. Se agregó link al proyecto anterior.
+Versón 2: Comienzo desde cero. Se agregó UML nueva y primer archivo de herencias, con las clases cliente y empleado de la clase madre personas.
