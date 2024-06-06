@@ -10,11 +10,15 @@ Habitaciones: Podrán ser reservadas, se puede hacer varias reservas al mismo cu
 Reserva: manejo de las reservaciones de las habitaciones
 
 # Consideraciones
-Casos de error: Empalmamiento de las reservas, se debe checar disponibilidad antes de reservar porque el programa no es capaz de evitar empalmamientos. Ingreso de fecha en formato diferente.
+Casos de error: Empalmamiento de las reservas, se debe checar disponibilidad antes de reservar porque el programa no es capaz de evitar empalmamientos.
 
-Hay un pequeño caso de prueba en el main. Falta la clase de reserva.
+El programa solo corre en la consola y esta hecho con c++ standard por lo que corre en todos los sistemas operativos
+compilar con: "g++ personas.h reserva.h hotel.h habitacion.h main.cpp"
+correr en linux: "/a.out"
+correr en windows: "a.exe
 
 # Versiones
 Versión 1: Se agregó el UML para plantear la base. Se agregó link al proyecto anterior.
 Versón 2: Comienzo desde cero. Se agregó UML nueva y primer archivo de herencias, con las clases cliente y empleado de la clase madre personas.
 Versión 3: Se agregaron mas clases y el main. Actualización de UML.
+Versión 4: Se agregó el main completo y se modificaron todas las clases para adpatarse a los requerimientos.
