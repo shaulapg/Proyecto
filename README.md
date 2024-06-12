@@ -19,6 +19,9 @@ correr en windows: "a.exe
 
 # Versiones
 Versión 1: Se agregó el UML para plantear la base. Se agregó link al proyecto anterior.
+
 Versón 2: Comienzo desde cero. Se agregó UML nueva y primer archivo de herencias, con las clases cliente y empleado de la clase madre personas.
+
 Versión 3: Se agregaron mas clases y el main. Actualización de UML.
+
 Versión 4: Se agregó el main completo y se modificaron todas las clases para adpatarse a los requerimientos, se actualizo el UML.
