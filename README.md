@@ -19,7 +19,11 @@ Reserva: manejo de las reservaciones de las habitaciones
 Al ingresar se puede elegir entrar como administrados, empleado o cliente para poder ver varias funciones. En el caso del administrador, se pueden dar de alta empleados, clientes y habitaciones, asi como consultar estas mismas, ademas de consultar conjuntamente clientes y empleados usando la opcion "Mostrar a todas las personas" del menu de administrador. Por otro lado los empleados y clientes pueden hacer las mismas cosas: consultar sus datos, cambiar su constacto y hacer una reserva, esto ultimo con la unica diferencia de que los empleados tienen un descuento.
 
 # Consideraciones
-Casos de error: Empalmamiento de las reservas, se debe checar disponibilidad antes de reservar porque el programa no es capaz de evitar empalmamientos.
+Casos de error: 
+
+Empalmamiento de las reservas, se debe checar disponibilidad antes de reservar porque el programa no es capaz de evitar empalmamientos. Si bien el codigo no se cicla o falla drasticamente, no se puede evitar esto.
+
+Mal ingreso de datos: el ingresar datos de otro tipo al especificado (como un caracter en vez de un numero entero) como siempre es un problema para el codigo.
 
 El programa solo corre en la consola y esta hecho con c++ standard por lo que corre en todos los sistemas operativos
 compilar con: "g++ personas.h reserva.h hotel.h habitacion.h main.cpp"
