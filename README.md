@@ -15,6 +15,7 @@ Habitaciones: Podrán ser reservadas, se puede hacer varias reservas al mismo cu
 
 Reserva: manejo de las reservaciones de las habitaciones
 
+#Funcionalidad
 Al ingresar se puede elegir entrar como administrados, empleado o cliente para poder ver varias funciones. En el caso del administrador, se pueden dar de alta empleados, clientes y habitaciones, asi como consultar estas mismas, ademas de consultar conjuntamente clientes y empleados usando la opcion "Mostrar a todas las personas" del menu de administrador. Por otro lado los empleados y clientes pueden hacer las mismas cosas: consultar sus datos, cambiar su constacto y hacer una reserva, esto ultimo con la unica diferencia de que los empleados tienen un descuento.
 
 # Consideraciones
