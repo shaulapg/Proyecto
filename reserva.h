@@ -23,7 +23,7 @@ class Reserva{
     //Declaracion de atributos publicos
     public:
     //Constructor default
-    Reserva(): fecha_entrada(""), fecha_salida(""), noches(0), registrado_a(""), tipo(0){};
+    Reserva(){};
     //Constructor con datos
     Reserva(std::string ent, std::string sal, int noch, std::string reg, int tip): fecha_entrada(ent), fecha_salida(sal), noches(noch), registrado_a(reg), tipo(tip){};
 
@@ -33,6 +33,7 @@ class Reserva{
     std::string get_registrado();
     int get_tipo();
     void set_salida(std::string);
+    void imprime();
 };
 
 /**get_entrada getter de la entrada a la habitacion
@@ -109,6 +110,24 @@ int Reserva::get_tipo(){
  */
 void Reserva::set_salida(std::string salida){
     fecha_salida = salida;
+}
+
+
+/**imprime se encarga de mostrar los datos de la reserva
+ *
+ * Trabaja en conjunto con muestra_reservas para desplegar
+ * toda la informacion de todas las reservas
+ * 
+ * @param
+ * @ return
+*/
+void Reserva::imprime(){
+    std::cout << "|Fecha de entrada: " << fecha_entrada << std::endl;
+    std::cout << "|Fecha de salida: " << fecha_salida << std::endl;
+    std::cout << "|Noches: " << noches << std::endl;
+    std::cout << "|Tipo de habitacion: " << tipo << std::endl;
+    std::cout << "|Registrado a nombre de: " << registrado_a << std::endl;
+    std::cout << std::endl;
 }
 
 #endif

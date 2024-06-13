@@ -27,19 +27,35 @@ class Habitacion{
 
     //Declaracion de variables publicas
     public:
+
     //Constructor default
+    /**
+     * Construye un objeto "Habitacion" sin datos proporcionados
+     * 
+     * @param
+     * @return
+    */
     Habitacion(): numero(0), tipo(0), disponibilidad(false){};
+
     //Constructor con datos dados, el numero de habitacion se asigna automaticamente
+    /**
+     * Construye un objeto "Habitacion" con los datos necesarios proporcionados
+     * 
+     * @param  int tipo de habitacion, bool disponibilidad de la habitacion
+     * @return
+    */
     Habitacion(int tip, bool disp): tipo(tip), disponibilidad(disp){
         numero = num_habi;
         num_habi++;
     }
 
-    
+    //impresion de habitaciones
     void imprime_hab();
+    //getters
     int get_numero();
     int get_tipo();
     bool get_disponibilidad();
+    //setter
     void set_disponibilidad(bool);
 };
 
@@ -50,9 +66,10 @@ class Habitacion{
  * @return
 */
 void Habitacion::imprime_hab(){
-    std::cout << "Numero: " << numero << std::endl;
-    std::cout << "Tipo: " << tipo << std::endl;
-    std::cout << "Disponibilidad: " << disponibilidad << std::endl;
+    std::cout << "|Numero: " << numero << std::endl;
+    std::cout << "|Tipo: " << tipo << std::endl;
+    std::cout << "|Disponibilidad: " << disponibilidad << std::endl;
+    std::cout << std::endl;
 }
 
 /**

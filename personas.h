@@ -17,7 +17,7 @@
 #include "reserva.h" //Hacer reservas
 #include "habitacion.h" //Checar cupos de habitaciones
 
-//Variables para contar lasreservas
+//Variables para contar las reservas
 int cont_res = 0;
 int num_res = 0;
 class Personas{
@@ -30,12 +30,12 @@ class Personas{
     //Atributos publicos
     public:
     //Constructor default
-    Personas(): id(0), nombre(""), contacto(""){};
+    Personas(){};
     //Constructor con datos
     Personas(std::string nom, std::string cont): nombre(nom), contacto(cont){};
 
     //Declaracion de metodo abstracto ser sobreescrito mas tarde
-    virtual float reservar(Reserva *) = 0;
+    virtual float reservar(int, int) = 0;
 
     std::string get_id();
     std::string get_nombre();
@@ -90,7 +90,6 @@ void Personas::set_contacto(std::string cont){
     contacto = cont;
 }
 
-
 //Contador de empleados para asignacion de id
 int emp_id = 0;
 class Empleado : public Personas{
@@ -101,7 +100,7 @@ class Empleado : public Personas{
     //Atributos publicos
     public:
     //Constructor default
-    Empleado(): Personas(), trabajando(false){};
+    Empleado(){};
     //Constructor con datos
     Empleado(std::string nom, std::string cont, bool trab): Personas(nom, cont), trabajando(trab) {
         //Variable temporal para concatenar letra de identificacion y numero
@@ -114,47 +113,54 @@ class Empleado : public Personas{
         emp_id++;
     }
 
-    float reservar(Reserva *);
+    void agrega_reserva(Reserva *);
+    float reservar(int, int);
     void imprime();
     bool get_trabajando();
     void set_trabajando(bool);
+    void muestra_reservas();
 };
 
-/**reservar crea una nueva reserva
+/**agrega_reserva crea una nueva reserva
  *
  * usa el objeto previamente creado de reserva
- * para registrar la reserva y calcular el
- * precio a pagar por la estadia
+ * para registrarla en la lista de reservas
  * 
  * @param Reserva * reserva a realizar
- * @ return precio de la habitacion
+ * @ return
 */
-float Empleado::reservar(Reserva * objeto){
-    //Se agrega la reserva a la lista de reservas
+void Empleado::agrega_reserva(Reserva * objeto){
     if (cont_res < 20){
         res[cont_res] = objeto;
-        //Se aumenta el contador en 1
         cont_res++;
     }
-    //Comprovador de falta de cuarto
-    bool reservado = false;
-    //Contador para detener el codigo en caso de terminar con las habitaciones
-    int cont = 0;
+}
+
+/**reservar calcula el precio de la reserva
+ *
+ * toma en cuenta las noches y tipo de habitacion
+ * para calcular el precio de la reserva
+ * 
+ * @param int tipo de habitacion, int numero de
+ * noches
+ * @ return float precio de la habitacion
+*/
+float Empleado::reservar(int tip, int noch){
     //Declaracion para el precio a devolver
     float precio = 0;
     //Switch segun el tipo de habitacion
-    switch (objeto->get_tipo()){
+    switch (tip){
         case 1:
-        precio = 250 * objeto->get_noches();
+        precio = 250 * noch;
         break;
         case 2:
-        precio = 280 * objeto->get_noches();
+        precio = 280 * noch;
         break;
         case 3:
-        precio = 320 * objeto->get_noches();
+        precio = 320 * noch;
         break;
         case 4:
-        precio = 350 * objeto->get_noches();
+        precio = 350 * noch;
         break;
     }
     //Precio con descuento de empleado
@@ -172,10 +178,11 @@ float Empleado::reservar(Reserva * objeto){
  * @ return
 */
 void Empleado::imprime(){
-    std::cout << "ID: " << id << std::endl;
-    std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "Contacto: " << contacto << std::endl;
-    std::cout << "Esta trabajando: " << trabajando << std::endl;
+    std::cout << "|ID: " << id << std::endl;
+    std::cout << "|Nombre: " << nombre << std::endl;
+    std::cout << "|Contacto: " << contacto << std::endl;
+    std::cout << "|Esta trabajando: " << trabajando << std::endl;
+    std::cout << std::endl;
 }
 
 /**get_trabajando getter del estado del trabajador (en
@@ -198,6 +205,23 @@ void Empleado::set_trabajando(bool disp){
     trabajando = disp;
 }
 
+/**muestra_reservas muestra todas las reservas
+ * registrados previamente
+ * 
+ * Manda a llamar a todas las reservas una por una.
+ * No se encarga de imprimirlas, pero si de pasar
+ * una por una para que otra funcion se encargue de 
+ * imprimirlas
+ * 
+ * @param
+ * @return
+*/
+void Empleado::muestra_reservas(){
+    for(int i = 0; i < cont_res; i++){
+        res[i]->imprime();
+    }
+}
+
 
 //Variable para manejar el id de los clientes
 int cliente_id = 0;
@@ -209,7 +233,7 @@ class Cliente : public Personas{
     //Declaracion de atributos publicos
     public:
     //Constructor default
-    Cliente(): Personas(), estancia(false){};
+    Cliente(){};
     //Constructor con datos
     Cliente(std::string nom, std::string cont, bool est): Personas(nom, cont), estancia(est){
         //Auxiliar para asignacion de id
@@ -222,7 +246,7 @@ class Cliente : public Personas{
         cliente_id++;;
     };
 
-    float reservar(Reserva *);
+    float reservar(int, int);
     
     void imprime();
     bool get_estancia();
@@ -238,27 +262,21 @@ class Cliente : public Personas{
  * @param Reserva * reserva a registrar
  * @ return precio de la reserva
 */
-float Cliente::reservar(Reserva * objeto){
-    //Se agrega a la lista de reservas si hay espacio
-    if (cont_res < 20){
-        res[cont_res] = objeto;
-        //Se aumenta el contador de reservas
-        cont_res++;
-    }
+float Cliente::reservar(int tip, int noch){
     float precio = 0;
     //Switch para asignar el precio segun la habitacion
-    switch (objeto->get_tipo()){
+    switch (tip){
         case 1:
-        precio = 250 * objeto->get_noches();
+        precio = 250 * noch;
         break;
         case 2:
-        precio = 280 * objeto->get_noches();
+        precio = 280 * noch;
         break;
         case 3:
-        precio = 320 * objeto->get_noches();
+        precio = 320 * noch;
         break;
         case 4:
-        precio = 350 * objeto->get_noches();
+        precio = 350 * noch;
         break;
     }
     //Se devuelve el precio segun el proceso anterior
@@ -297,10 +315,11 @@ void Cliente::set_estancia(bool est){
  * @ return
 */
 void Cliente::imprime(){
-    std::cout << "Id: " << id << std::endl;
-    std::cout << "Nombre: " << nombre << std::endl;
-    std::cout << "Contacto: " << contacto << std::endl;
-    std::cout << "Estancia: " << estancia << std::endl;
+    std::cout << "|Id: " << id << std::endl;
+    std::cout << "|Nombre: " << nombre << std::endl;
+    std::cout << "|Contacto: " << contacto << std::endl;
+    std::cout << "|Estancia: " << estancia << std::endl;
+    std::cout << std::endl;
 }
 
 #endif
